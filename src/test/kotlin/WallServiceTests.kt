@@ -29,7 +29,7 @@ class WallServiceTests {
             true,
             true,
             true,
-            attachment = Video(1,1,"video", "about", "www",0)
+            attachment = emptyArray()
         )
         val result = WallService.add(post)
         assertNotEquals(post.id, result.id)
@@ -60,7 +60,7 @@ class WallServiceTests {
             true,
             true,
             true,
-            attachment = Video(1,1,"video", "about", "www",0)
+            attachment = emptyArray()
         )
 
         val addedId = WallService.add(post).id
@@ -87,7 +87,7 @@ class WallServiceTests {
             true,
             true,
             true,
-            attachment = Video(1,1,"video", "about", "www",0)
+            attachment = emptyArray()
         )
         val result = WallService.update(updatePost)
         assertEquals(true, result)
@@ -119,7 +119,7 @@ class WallServiceTests {
             true,
             true,
             true,
-            attachment = Video(1,1,"video", "about", "www",0)
+            attachment = emptyArray()
         )
         val addedId = WallService.add(post).id
         val updatePost = Post(
@@ -145,7 +145,7 @@ class WallServiceTests {
             true,
             true,
             true,
-            attachment = Video(1,1,"video", "about", "www",0)
+            attachment = emptyArray()
         )
         val result = WallService.update(updatePost)
         assertEquals(false, result)
