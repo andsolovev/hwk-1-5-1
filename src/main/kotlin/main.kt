@@ -1,5 +1,3 @@
-import java.util.Objects
-
 fun main() {
 
     val attachments = arrayOf(
@@ -64,6 +62,7 @@ fun main() {
     WallService.add(post2)
     WallService.createComment(1, Comment(1, 1, 111111, "comment", 1, 0, attachments))
     WallService.createComment(1, Comment(1, 3, 222222, "comment", 1, 0, attachments))
+
     WallService.showPostsAndComments()
 }
 
