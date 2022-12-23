@@ -1,6 +1,5 @@
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
+import org.junit.jupiter.api.assertThrows
+import kotlin.test.*
 
 class WallServiceTests {
 
@@ -32,7 +31,7 @@ class WallServiceTests {
             attachment = emptyArray()
         )
         val result = WallService.add(post)
-        assertNotEquals(post.id, result.id)
+        assertNotEquals(post.id-1, result.id)
     }
 
     @Test
@@ -150,4 +149,74 @@ class WallServiceTests {
         val result = WallService.update(updatePost)
         assertEquals(false, result)
     }
+    @Test
+    fun createCommentPostExists() {
+        val post = Post(
+            1,
+            1,
+            1,
+            1,
+            1234567890,
+            "text",
+            1,
+            1,
+            true,
+            Comments(),
+            Copyright(),
+            Likes(),
+            Reposts(),
+            0,
+            "post",
+            PostSource(),
+            Geo(),
+            1,
+            emptyArray(),
+            true,
+            true,
+            true,
+            attachment = emptyArray()
+        )
+
+        WallService.add(post)
+
+        val comment = WallService.createComment(1, Comment(1, 1, 111111, "comment", 1, 0, emptyArray()))
+        val comments = WallService.showComments()
+        assertContains(comments, comment)
+    }
+
+    @Test
+    fun shouldThrow() {
+        assertThrows<PostNotFoundException> {
+            val post = Post(
+                1,
+                1,
+                1,
+                1,
+                1234567890,
+                "text",
+                1,
+                1,
+                true,
+                Comments(),
+                Copyright(),
+                Likes(),
+                Reposts(),
+                0,
+                "post",
+                PostSource(),
+                Geo(),
+                1,
+                emptyArray(),
+                true,
+                true,
+                true,
+                attachment = emptyArray()
+            )
+
+            WallService.add(post)
+
+            val comment = WallService.createComment(99, Comment(1, 1, 111111, "comment", 1, 0, emptyArray()))
+        }
+    }
+
 }
